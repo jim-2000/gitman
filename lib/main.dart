@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gitman/screen/initailScreen.dart';
+import 'package:gitman/screen/InitailScreen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:gitman/theme/ThemeData.dart';
 

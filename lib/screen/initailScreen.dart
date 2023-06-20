@@ -6,7 +6,13 @@ class InitialScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(
+          "Gitman",
+          style: Theme.of(context).textTheme.displayMedium,
+        ),
+        actions: [],
+      ),
       body: Column(
         children: [],
       ),
