@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gitman/controller/themeController.dart';
+import 'package:gitman/screen/HomeScreen.dart';
 import 'package:gitman/utils/app_utils.dart';
 
 class InitialScreen extends StatefulWidget {
@@ -77,8 +78,11 @@ class _InitialScreenState extends State<InitialScreen> {
               height: 20,
             ),
             utils.button("title", () {
-              log(_usernameController.text);
-              _usernameController.text = "";
+              if (_usernameController.text.isNotEmpty) {
+                log(_usernameController.text);
+                Get.to(HomeScreen(name: _usernameController.text));
+                _usernameController.text = "";
+              }
             }),
           ],
         ),
