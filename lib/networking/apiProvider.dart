@@ -24,4 +24,24 @@ class ApiProvider {
 }
 
 //
-class MYException implements Exception {}
+class MYException implements Exception {
+  final _message;
+  final _errorType;
+  MYException([this._message, this._errorType]);
+  //
+
+  @override
+  String toString() {
+    return "$_errorType $_message";
+  }
+}
+
+// bad request error
+class BadRequestException extends MYException {
+  BadRequestException([String? meassage]) : super(meassage, 'error');
+}
+
+// wrong name error
+class NameErrorException extends MYException {
+  NameErrorException([String? meassage]) : super(meassage, 'Wrong Name');
+}
