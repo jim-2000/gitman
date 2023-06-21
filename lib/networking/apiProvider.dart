@@ -1,12 +1,12 @@
 import 'dart:developer' show log;
 import 'package:dio/dio.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Response;
 import 'package:gitman/networking/url.dart';
 
 class ApiProvider {
   final dio = Dio();
   // get
-  Future<dynamic> get(String url) async {
+  Future<Response> get(String url) async {
     log("url --- : $url ${Api.token}");
     dynamic responseJson;
 
@@ -14,15 +14,7 @@ class ApiProvider {
         options: Options(headers: {'Authorization': 'token ${Api.token}'}));
     responseJson = response.data as Map<String, dynamic>;
 
-    if (response.statusCode == 200) {
-      return responseJson;
-    } else if (response.statusCode == 400) {
-      throw BadRequestException('Bad request');
-    } else if (response.statusCode == 401 || response.statusCode == 403) {
-      throw Exception("Unauthorized access");
-    } else {
-      throw Exception("Something went wrong");
-    }
+    return response;
   }
 }
 

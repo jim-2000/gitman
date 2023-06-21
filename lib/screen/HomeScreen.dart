@@ -74,7 +74,12 @@ class _HomeScreenState extends State<HomeScreen> {
               : Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: SingleChildScrollView(
-                    child: displayData(g, context),
+                    child: GetBuilder<GitController>(builder: (_) {
+                      if (g.user == null) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                      return displayData(g, context);
+                    }),
                   ),
                 ),
         ));
