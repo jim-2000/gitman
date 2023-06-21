@@ -289,71 +289,79 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Card(
-                    elevation: 3.0,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(8),
-                      ),
+                  InkWell(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(8),
                     ),
-                    child: Container(
-                      padding: const EdgeInsets.all(4),
-                      height: 200,
-                      width: Get.width / 2 - 20,
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(8)),
-                        border: Border.all(
-                          color: Get.isDarkMode
-                              ? Colors.grey.shade400
-                              : Colors.black54,
+                    onTap: () {
+                      // route to repos
+                    },
+                    child: Card(
+                      elevation: 3.0,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(8),
                         ),
                       ),
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                29.toString(),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge!
-                                    .copyWith(
-                                      height: 1.6,
-                                      color: Colors.deepOrange,
-                                      fontSize: 48,
-                                    ),
-                              ),
-                              Text(
-                                "public Repos".toUpperCase(),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                      color: Get.isDarkMode
-                                          ? Colors.white
-                                          : Colors.black,
-                                      letterSpacing: 2.6,
-                                    ),
-                              ),
-                            ],
+                      child: Container(
+                        padding: const EdgeInsets.all(4),
+                        height: 200,
+                        width: Get.width / 2 - 20,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(8)),
+                          border: Border.all(
+                            color: Get.isDarkMode
+                                ? Colors.grey.shade400
+                                : Colors.black54,
                           ),
-                          Positioned(
-                            bottom: 0,
-                            right: 0,
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.arrow_circle_right_outlined,
-                                size: 40,
-                                color: Colors.teal,
-                              ),
+                        ),
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  29.toString(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .copyWith(
+                                        height: 1.6,
+                                        color: Colors.deepOrange,
+                                        fontSize: 48,
+                                      ),
+                                ),
+                                Text(
+                                  "public Repos".toUpperCase(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                        color: Get.isDarkMode
+                                            ? Colors.white
+                                            : Colors.black,
+                                        letterSpacing: 2.6,
+                                      ),
+                                ),
+                              ],
                             ),
-                          )
-                        ],
+                            Positioned(
+                              bottom: 0,
+                              right: 0,
+                              child: IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.arrow_circle_right_outlined,
+                                  size: 40,
+                                  color: Colors.teal,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
