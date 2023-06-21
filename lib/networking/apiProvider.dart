@@ -16,16 +16,21 @@ class ApiProvider {
 
     if (response.statusCode == 200) {
       return responseJson;
+    } else if (response.statusCode == 400) {
+      throw BadRequestException('Bad request');
+    } else if (response.statusCode == 401 || response.statusCode == 403) {
+      throw Exception("Unauthorized access");
     } else {
-      Get.snackbar("", "Something went wrong");
-      return null;
+      throw Exception("Something went wrong");
     }
   }
 }
 
 //
 class MYException implements Exception {
+  // ignore: prefer_typing_uninitialized_variables
   final _message;
+  // ignore: prefer_typing_uninitialized_variables
   final _errorType;
   MYException([this._message, this._errorType]);
   //

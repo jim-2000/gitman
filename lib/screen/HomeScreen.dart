@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gitman/controller/gitController.dart';
 import 'package:gitman/controller/themeController.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   String name;
   HomeScreen({Key? key, required this.name}) : super(key: key);
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Get.put(GitController()).getUserData(widget.name);
+  }
+
+//----------------------------------------------------------------
+  @override
   Widget build(BuildContext context) {
     ThemeController c = Get.put(ThemeController());
-
+    GitController g = Get.put(GitController());
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -20,7 +33,7 @@ class HomeScreen extends StatelessWidget {
           onPressed: () => Get.back(),
         ),
         title: Text(
-          name.toUpperCase(),
+          widget.name.toUpperCase(),
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 letterSpacing: 2.0,
               ),
@@ -63,7 +76,8 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.network(
-                    "https://images.unsplash.com/photo-1674574124649-778f9afc0e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+                    g.user!.imageUrl ??
+                        "https://images.unsplash.com/photo-1674574124649-778f9afc0e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
                     height: Get.height * 0.28,
                     width: Get.width / 2,
                     fit: BoxFit.cover,
@@ -73,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        "John Doe".toUpperCase(),
+                        g.user!.name.toUpperCase(),
                         style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               height: 1.6,
                               color:
@@ -83,7 +97,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                       ),
                       Text(
-                        "email.me.@gmail.com",
+                        g.user!.email ?? 'no mail',
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
                               height: 2.2,
                               color:

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class User {
-  String? name;
+  String name;
   String? username;
   String? email;
   String? bio;
@@ -12,7 +12,7 @@ class User {
   int? publicRepo;
   String? joinedDate;
   User({
-    this.name,
+    required this.name,
     this.username,
     this.email,
     this.bio,
@@ -46,7 +46,7 @@ class User {
       email: map['email'],
       bio: map['bio'],
       imageUrl: map['imageUrl'],
-      twitterUsername: map['twitterUsername'],
+      twitterUsername: map['twitter_username'],
       followers: map['followers']?.toInt(),
       followings: map['followings']?.toInt(),
       publicRepo: map['publicRepo']?.toInt(),
