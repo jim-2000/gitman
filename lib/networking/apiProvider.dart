@@ -8,11 +8,13 @@ class ApiProvider {
   // get
   Future<Response> get(String url) async {
     log("url --- : $url ${Api.token}");
-    dynamic responseJson;
 
-    final response = await dio.get(url,
-        options: Options(headers: {'Authorization': 'token ${Api.token}'}));
-    responseJson = response.data as Map<String, dynamic>;
+    final response = await dio.get(
+      url,
+      options: Options(
+        headers: {'Authorization': 'token ${Api.token}'},
+      ),
+    );
 
     return response;
   }

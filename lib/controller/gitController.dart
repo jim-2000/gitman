@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:gitman/model/UserModel.dart';
+import 'package:gitman/model/UserRepoModel.dart';
 import 'package:gitman/networking/apiProvider.dart';
 import 'package:gitman/networking/url.dart';
 
@@ -9,13 +11,7 @@ class GitController extends GetxController {
   final RxBool isLoading = false.obs;
   User? user;
   //
-  void startLoading() {
-    isLoading.value = true;
-  }
-
-  void stopLoading() {
-    isLoading.value = false;
-  }
+  RxList<Repository> repositories = <Repository>[].obs;
 
   //
   Future<void> getUserData(String name) async {
@@ -64,5 +60,47 @@ class GitController extends GetxController {
       Get.back();
       stopLoading();
     }
+  }
+
+// call repo
+  Future<void> fetchRepositories(String username) async {
+    final url = 'https://api.github.com/users/$username/repos';
+    final response = await ApiProvider().get(url);
+
+    if (response.statusCode == 200) {
+      final List<dynamic> data = response.data;
+
+      final List<Repository> repos = data.map((repo) {
+        return Repository(
+          name: repo['name'],
+          description: repo['description'] ?? 'no description...',
+          created_at: repo['created_at'] ?? '',
+          default_branch: repo['default_branch'] ?? 'null',
+          full_name: repo['full_name'] ?? '',
+          size: repo['size'] ?? 0,
+          language: repo['language'] ?? '',
+          owner: RepoOwner(
+            login: repo['owner']['login'] ?? 'null',
+            url: repo['owner']['url'] ?? 'null',
+            htmlUrl: repo['owner']['html_url'] ?? 'null',
+            avatarUrl: repo['owner']['avatar_url'] ??
+                ' "https://images.unsplash.com/photo-1674574124649-778f9afc0e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"',
+          ),
+        );
+      }).toList();
+
+      repositories.value = repos;
+    } else {
+      repositories.value = [];
+    }
+  }
+
+  //
+  void startLoading() {
+    isLoading.value = true;
+  }
+
+  void stopLoading() {
+    isLoading.value = false;
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gitman/controller/gitController.dart';
 import 'package:gitman/controller/themeController.dart';
+import 'package:gitman/screen/RepoScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   String name;
@@ -300,6 +301,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               onTap: () {
                 // route to repos
+                Get.to(RepoScreen(
+                  name: widget.name,
+                ));
               },
               child: Card(
                 elevation: 3.0,
