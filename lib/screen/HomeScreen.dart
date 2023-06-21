@@ -358,7 +358,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         bottom: 0,
                         right: 0,
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(RepoScreen(
+                              name: widget.name,
+                            ));
+                          },
                           icon: const Icon(
                             Icons.arrow_circle_right_outlined,
                             size: 40,

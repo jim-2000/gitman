@@ -63,8 +63,9 @@ class GitController extends GetxController {
   }
 
 // call repo
-  Future<void> fetchRepositories(String username) async {
-    final url = 'https://api.github.com/users/$username/repos';
+  Future<void> fetchRepositories(String username, int page) async {
+    log('call');
+    final url = 'https://api.github.com/users/$username/repos?page=$page';
     final response = await ApiProvider().get(url);
 
     if (response.statusCode == 200) {
@@ -89,7 +90,8 @@ class GitController extends GetxController {
         );
       }).toList();
 
-      repositories.value = repos;
+      // ignore: invalid_use_of_protected_member
+      repositories.value = repositories.value + repos;
     } else {
       repositories.value = [];
     }

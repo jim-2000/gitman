@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gitman/controller/gitController.dart';
@@ -15,10 +17,15 @@ class RepoScreen extends StatefulWidget {
 
 class _RepoScreenState extends State<RepoScreen> {
   bool isGridview = false;
+  int page = 1;
+  final scrollController = ScrollController();
   @override
   void initState() {
     super.initState();
-    Get.put(GitController()).fetchRepositories(widget.name);
+    Get.put(GitController()).fetchRepositories(widget.name, page);
+    scrollController.addListener(() {
+      _scrollListener;
+    });
   }
 
   @override
@@ -109,9 +116,10 @@ class _RepoScreenState extends State<RepoScreen> {
       itemCount: g.repositories.length,
       physics: const BouncingScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: MediaQuery.of(context).size.width /
-              (MediaQuery.of(context).size.height / 3)),
+        crossAxisCount: 2,
+        childAspectRatio: MediaQuery.of(context).size.width /
+            (MediaQuery.of(context).size.height / 3),
+      ),
       itemBuilder: (c, i) {
         final repo = g.repositories[i];
         final dateTime = DateTime.parse(repo.created_at);
@@ -139,8 +147,9 @@ class _RepoScreenState extends State<RepoScreen> {
                 children: [
                   Text(
                     repo.name.toUpperCase(),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          height: 2.2,
                           letterSpacing: 1,
                           fontSize: 18,
                         ),
@@ -172,9 +181,13 @@ class _RepoScreenState extends State<RepoScreen> {
     );
   }
 
-  ListView listviewofrepos(GitController g) {
+  ListView listviewofrepos(
+    GitController g,
+  ) {
     return ListView.builder(
+      physics: const ScrollPhysics(),
       itemCount: g.repositories.length,
+      controller: scrollController,
       itemBuilder: (context, i) {
         final repo = g.repositories[i];
         final dateTime = DateTime.parse(repo.created_at);
@@ -188,7 +201,7 @@ class _RepoScreenState extends State<RepoScreen> {
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
                       height: 2.2,
                       letterSpacing: 1,
-                      fontSize: 18,
+                      fontSize: 16,
                     ),
               ),
               subtitle: Text(
@@ -214,5 +227,15 @@ class _RepoScreenState extends State<RepoScreen> {
         );
       },
     );
+  }
+
+//
+  Future<void> _scrollListener() async {
+    GitController g = Get.put(GitController());
+    if (g.isLoading.value) return;
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent) {
+      log('call');
+    }
   }
 }
