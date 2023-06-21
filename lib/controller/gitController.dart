@@ -20,6 +20,7 @@ class GitController extends GetxController {
   //
   Future<void> getUserData(String name) async {
     final url = '${Api.api}/users/${name.trim()}';
+    startLoading();
     try {
       final response = await ApiProvider().get(url);
       user = User(
@@ -30,15 +31,18 @@ class GitController extends GetxController {
         imageUrl: response['avatar_url'] ?? '',
         joinedDate: response['created_at'],
         publicRepo: response['public_repos'] ?? 0,
+        gists: response['public_gists'] ?? 0,
         email: response['email'] ?? 'no email',
         twitterUsername: response['twitter_username'] ?? 'no twitter',
         username: response['login'] ?? 'No user found',
       );
       log('Name is ${user!.name}');
-
+      stopLoading();
       update();
     } catch (e) {
       print(e);
+      Get.back();
+      stopLoading();
     }
   }
 }

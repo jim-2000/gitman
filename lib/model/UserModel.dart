@@ -10,6 +10,7 @@ class User {
   int? followers;
   int? followings;
   int? publicRepo;
+  int? gists;
   String? joinedDate;
   User({
     required this.name,
@@ -21,6 +22,7 @@ class User {
     this.followers,
     this.followings,
     this.publicRepo,
+    this.gists,
     this.joinedDate,
   });
 
@@ -31,10 +33,11 @@ class User {
       'email': email,
       'bio': bio,
       'imageUrl': imageUrl,
-      'twitterUsername': twitterUsername,
+      'twitter_user': twitterUsername,
       'followers': followers,
       'followings': followings,
       'publicRepo': publicRepo,
+      'public_gists': gists,
       'joinedDate': joinedDate,
     };
   }
@@ -50,6 +53,7 @@ class User {
       followers: map['followers']?.toInt(),
       followings: map['followings']?.toInt(),
       publicRepo: map['publicRepo']?.toInt(),
+      gists: map['public_gists']?.toInt(),
       joinedDate: map['joinedDate'],
     );
   }
