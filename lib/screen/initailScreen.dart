@@ -15,6 +15,7 @@ class InitialScreen extends StatefulWidget {
 
 class _InitialScreenState extends State<InitialScreen> {
   TextEditingController _usernameController = TextEditingController();
+
   @override
   void dispose() {
     _usernameController.dispose();
@@ -63,28 +64,31 @@ class _InitialScreenState extends State<InitialScreen> {
           )
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            utils.textinput(
-              text: "Enter User Name",
-              controller: _usernameController,
-              inputType: TextInputType.name,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            utils.button("title", () {
-              if (_usernameController.text.isNotEmpty) {
-                log(_usernameController.text);
-                Get.to(HomeScreen(name: _usernameController.text));
-                _usernameController.text = "";
-              }
-            }),
-          ],
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              utils.textinput(
+                text: "Enter User Name",
+                controller: _usernameController,
+                inputType: TextInputType.name,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              utils.button("title", () {
+                if (_usernameController.text.isNotEmpty) {
+                  log(_usernameController.text);
+                  Get.to(HomeScreen(name: _usernameController.text));
+                  _usernameController.text = "";
+                }
+              }),
+            ],
+          ),
         ),
       ),
     );

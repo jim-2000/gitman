@@ -23,9 +23,7 @@ class _RepoScreenState extends State<RepoScreen> {
   void initState() {
     super.initState();
     Get.put(GitController()).fetchRepositories(widget.name, page);
-    scrollController.addListener(() {
-      _scrollListener;
-    });
+    scrollController.addListener(_scrollListener);
   }
 
   @override
@@ -235,7 +233,10 @@ class _RepoScreenState extends State<RepoScreen> {
     if (g.isLoading.value) return;
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
-      log('call');
+      setState(() {
+        page = page + 1;
+      });
+      g.fetchRepositories(widget.name, page);
     }
   }
 }

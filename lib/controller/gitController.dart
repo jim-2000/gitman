@@ -15,6 +15,7 @@ class GitController extends GetxController {
 
   //
   Future<void> getUserData(String name) async {
+    log("call");
     final url = '${Api.api}/users/${name.trim()}';
     startLoading();
     try {
@@ -42,7 +43,7 @@ class GitController extends GetxController {
           twitterUsername: response['twitter_username'] ?? 'no twitter',
           username: response['login'] ?? 'no username',
         );
-        log('Name is ${response['name']}');
+        repositories.value = [];
         update();
       } else {
         Get.showSnackbar(
@@ -64,8 +65,8 @@ class GitController extends GetxController {
 
 // call repo
   Future<void> fetchRepositories(String username, int page) async {
-    log('call');
     final url = 'https://api.github.com/users/$username/repos?page=$page';
+    log(url);
     final response = await ApiProvider().get(url);
 
     if (response.statusCode == 200) {

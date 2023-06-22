@@ -12,7 +12,10 @@ class ApiProvider {
     final response = await dio.get(
       url,
       options: Options(
-        headers: {'Authorization': 'token ${Api.token}'},
+        headers: {
+          'Authorization': 'Bearer ${Api.token}',
+          'X-GitHub-Api-Version': '2022-11-28',
+        },
       ),
     );
 
