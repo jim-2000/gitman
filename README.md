@@ -1,9 +1,9 @@
+## if you faceing any issues  just change you access token and build again 
 Assignment Details:
 
 Your task is to create a Flutter application that utilizes the GitHub API to retrieve and display information about GitHub repositories.
 The application should have the following features:
 
- 
 
 1. First Page : https://api.github.com/users/{userName}
   - Here the user will input a username and after that you go to the home page.
