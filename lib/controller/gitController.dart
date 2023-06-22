@@ -66,7 +66,7 @@ class GitController extends GetxController {
 // call repo
   Future<void> fetchRepositories(String username, int page) async {
     final url = 'https://api.github.com/users/$username/repos?page=$page';
-    log(url);
+
     final response = await ApiProvider().get(url);
 
     if (response.statusCode == 200) {

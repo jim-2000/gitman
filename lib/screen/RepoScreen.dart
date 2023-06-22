@@ -112,6 +112,7 @@ class _RepoScreenState extends State<RepoScreen> {
   Widget gridveiwrepos(GitController g, BuildContext context) {
     return GridView.builder(
       itemCount: g.repositories.length,
+      controller: scrollController,
       physics: const BouncingScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
