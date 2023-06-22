@@ -17,15 +17,8 @@ class _InitialScreenState extends State<InitialScreen> {
   TextEditingController _usernameController = TextEditingController();
 
   @override
-  void dispose() {
-    _usernameController.dispose();
-    // TODO: implement dispose
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    ThemeController c = Get.put(ThemeController());
+    ThemeController c = Get.find<ThemeController>();
     AppUtils utils = AppUtils();
     return Scaffold(
       appBar: AppBar(
@@ -85,6 +78,8 @@ class _InitialScreenState extends State<InitialScreen> {
                   log(_usernameController.text);
                   Get.to(HomeScreen(name: _usernameController.text));
                   _usernameController.text = "";
+                } else {
+                  Get.snackbar('Enter User name', 'User name cannot be empty.');
                 }
               }),
             ],

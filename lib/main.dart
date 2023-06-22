@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     ThemeController c = Get.put(ThemeController());
 
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'GitMan',
       theme: AppTheme().lightTheme,
       darkTheme: AppTheme().darkTheme,
       debugShowCheckedModeBanner: false,

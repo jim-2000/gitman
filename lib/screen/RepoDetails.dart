@@ -11,8 +11,9 @@ class RepoDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GitController g = Get.put(GitController());
-    ThemeController c = Get.put(ThemeController());
+    GitController g = Get.find<GitController>();
+
+    ThemeController c = Get.find<ThemeController>();
 
     final dateTime = DateTime.parse(repo.created_at);
     final formattedDate = DateFormat('MMMM d, y', 'en_US').format(dateTime);

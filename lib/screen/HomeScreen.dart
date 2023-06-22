@@ -22,8 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
 //----------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
-    ThemeController c = Get.put(ThemeController());
-    GitController g = Get.put(GitController());
+    ThemeController c = Get.find<ThemeController>();
+    GitController g = Get.find<GitController>();
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(

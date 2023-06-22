@@ -46,11 +46,7 @@ class GitController extends GetxController {
         repositories.value = [];
         update();
       } else {
-        Get.showSnackbar(
-          const GetSnackBar(
-            title: 'Something went wrong',
-          ),
-        );
+        Get.snackbar('Error in Users', 'Something went wrong');
         Get.back();
       }
 
@@ -95,6 +91,9 @@ class GitController extends GetxController {
       repositories.value = repositories.value + repos;
     } else {
       repositories.value = [];
+
+      Get.snackbar('Error in Repos', 'Something went wrong');
+
       Get.back();
     }
   }

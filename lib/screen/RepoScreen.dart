@@ -28,8 +28,9 @@ class _RepoScreenState extends State<RepoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final GitController g = Get.put(GitController());
-    ThemeController c = Get.put(ThemeController());
+    GitController g = Get.find<GitController>();
+
+    ThemeController c = Get.find<ThemeController>();
 
     return Scaffold(
       appBar: AppBar(
