@@ -46,3 +46,35 @@ Good luck, and we look forward to reviewing your implementation!
 
 Deadline:
 Please ensure that you submit your completed assignment by 23rd June 2023.
+
+
+
+## Screenshots
+
+<table style="padding:10px">
+  <tr>
+    <td> 
+        Input Name
+        <img src="./screenshot/1.jpg"  alt="1"  width = 200px height = 300px />
+    </td>      
+     <td> 
+        User Page
+        <img src="./screenshot/2.jpg"  alt="1"  width = 200px height = 300px />
+    </td> 
+        <td> 
+        User Repository List
+        <img src="./screenshot/3.jpg"  alt="1"  width = 200px height = 300px />
+    </td> 
+  </tr>
+  <tr>
+    <td> 
+        User Repository Grid
+        <img src="./screenshot/4.jpg"  alt="1"  width = 200px height = 300px />
+    </td>      
+     <td> 
+        Repository Details
+        <img src="./screenshot/5.jpg"  alt="1"  width = 200px height = 300px />
+    </td> 
+    
+  </tr>
+</table>
