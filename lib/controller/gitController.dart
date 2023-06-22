@@ -95,6 +95,7 @@ class GitController extends GetxController {
       repositories.value = repositories.value + repos;
     } else {
       repositories.value = [];
+      Get.back();
     }
   }
 

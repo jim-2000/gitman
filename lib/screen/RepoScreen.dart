@@ -231,7 +231,7 @@ class _RepoScreenState extends State<RepoScreen> {
 //
   Future<void> _scrollListener() async {
     GitController g = Get.put(GitController());
-    if (g.isLoading.value) return;
+    if (g.isLoading.value) return; // don't fetch coz alrady in request
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
       setState(() {

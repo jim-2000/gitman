@@ -13,7 +13,7 @@ class ApiProvider {
       url,
       options: Options(
         headers: {
-          'Authorization': 'Bearer ${Api.token}',
+          'Authorization': 'token ${Api.token}',
           'X-GitHub-Api-Version': '2022-11-28',
         },
       ),
